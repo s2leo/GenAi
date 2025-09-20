@@ -14,11 +14,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import ChatHistory from "./ChatHistory";
-import { 
-  MessageSquare, 
-  FileText, 
-  Upload as UploadIcon, 
-  Brain, 
+import {
+  MessageSquare,
+  FileText,
+  Upload as UploadIcon,
+  Brain,
   Settings,
   Send,
   CheckCircle,
@@ -26,7 +26,7 @@ import {
   Shield,
   BookOpen,
   TrendingUp,
-  Search
+  Search,
 } from "lucide-react";
 
 const AnalysisOptionsModal = ({ isOpen, onClose, onConfirm, fileName }) => {
@@ -54,7 +54,7 @@ const AnalysisOptionsModal = ({ isOpen, onClose, onConfirm, fileName }) => {
         <h3 className="text-xl font-bold text-slate-900 mb-4">
           Configure Analysis for "{fileName}"
         </h3>
-        
+
         {/* Analysis Depth */}
         <div className="mb-6">
           <h4 className="font-semibold text-slate-900 mb-3">Analysis Depth</h4>
@@ -69,8 +69,12 @@ const AnalysisOptionsModal = ({ isOpen, onClose, onConfirm, fileName }) => {
                 className="mr-3"
               />
               <div>
-                <span className="font-medium text-slate-900">Comprehensive Analysis</span>
-                <p className="text-sm text-slate-600">Detailed review of all clauses, risks, and recommendations</p>
+                <span className="font-medium text-slate-900">
+                  Comprehensive Analysis
+                </span>
+                <p className="text-sm text-slate-600">
+                  Detailed review of all clauses, risks, and recommendations
+                </p>
               </div>
             </label>
             <label className="flex items-center cursor-pointer">
@@ -83,8 +87,12 @@ const AnalysisOptionsModal = ({ isOpen, onClose, onConfirm, fileName }) => {
                 className="mr-3"
               />
               <div>
-                <span className="font-medium text-slate-900">Quick Summary</span>
-                <p className="text-sm text-slate-600">High-level overview and key findings only</p>
+                <span className="font-medium text-slate-900">
+                  Quick Summary
+                </span>
+                <p className="text-sm text-slate-600">
+                  High-level overview and key findings only
+                </p>
               </div>
             </label>
           </div>
@@ -95,12 +103,35 @@ const AnalysisOptionsModal = ({ isOpen, onClose, onConfirm, fileName }) => {
           <h4 className="font-semibold text-slate-900 mb-3">Focus Areas</h4>
           <div className="space-y-2">
             {[
-              { key: "riskAssessment", label: "Risk Assessment", icon: <AlertTriangle className="w-4 h-4" />, desc: "Identify potential legal risks and liabilities" },
-              { key: "keyTerms", label: "Key Terms Explanation", icon: <BookOpen className="w-4 h-4" />, desc: "Plain English explanations of complex terms" },
-              { key: "recommendations", label: "Actionable Recommendations", icon: <TrendingUp className="w-4 h-4" />, desc: "Specific steps to improve the document" },
-              { key: "legalCompliance", label: "Legal Compliance Check", icon: <Shield className="w-4 h-4" />, desc: "Verify compliance with relevant regulations" },
+              {
+                key: "riskAssessment",
+                label: "Risk Assessment",
+                icon: <AlertTriangle className="w-4 h-4" />,
+                desc: "Identify potential legal risks and liabilities",
+              },
+              {
+                key: "keyTerms",
+                label: "Key Terms Explanation",
+                icon: <BookOpen className="w-4 h-4" />,
+                desc: "Plain English explanations of complex terms",
+              },
+              {
+                key: "recommendations",
+                label: "Actionable Recommendations",
+                icon: <TrendingUp className="w-4 h-4" />,
+                desc: "Specific steps to improve the document",
+              },
+              {
+                key: "legalCompliance",
+                label: "Legal Compliance Check",
+                icon: <Shield className="w-4 h-4" />,
+                desc: "Verify compliance with relevant regulations",
+              },
             ].map((option) => (
-              <label key={option.key} className="flex items-start cursor-pointer p-2 rounded hover:bg-slate-50">
+              <label
+                key={option.key}
+                className="flex items-start cursor-pointer p-2 rounded hover:bg-slate-50"
+              >
                 <input
                   type="checkbox"
                   checked={focusAreas[option.key]}
@@ -115,7 +146,9 @@ const AnalysisOptionsModal = ({ isOpen, onClose, onConfirm, fileName }) => {
                 <div className="flex items-start space-x-2">
                   <div className="text-emerald-600 mt-0.5">{option.icon}</div>
                   <div>
-                    <span className="font-medium text-slate-900">{option.label}</span>
+                    <span className="font-medium text-slate-900">
+                      {option.label}
+                    </span>
                     <p className="text-sm text-slate-600">{option.desc}</p>
                   </div>
                 </div>
@@ -182,7 +215,8 @@ const ChatPage = () => {
       {
         id: 1,
         type: "assistant",
-        content: "Hello! I'm your AI Legal Assistant. Upload a document to get started with analysis, or ask me any questions about legal documents.",
+        content:
+          "Hello! I'm your AI Legal Assistant. Upload a document to get started with analysis, or ask me any questions about legal documents.",
         timestamp: new Date().toLocaleTimeString(),
       },
     ]);
@@ -199,7 +233,7 @@ const ChatPage = () => {
   const handleAnalysisConfirm = (options) => {
     // Store options for potential future use
     console.log("Analysis options selected:", options);
-    
+
     // Add file upload message
     const fileMessage = {
       id: Date.now(),
@@ -207,26 +241,35 @@ const ChatPage = () => {
       content: `📄 Uploaded: ${uploadedFile.name}`,
       timestamp: new Date().toLocaleTimeString(),
     };
-    
-    setMessages(prev => [...prev, fileMessage]);
-    
+
+    setMessages((prev) => [...prev, fileMessage]);
+
     // Add analysis options message
     const optionsMessage = {
       id: Date.now() + 1,
       type: "user",
-      content: `Analysis configured: ${options.depth === "comprehensive" ? "Comprehensive" : "Quick Summary"} with focus on ${Object.entries(options.focusAreas).filter(([, value]) => value).map(([key]) => key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())).join(", ")}`,
+      content: `Analysis configured: ${
+        options.depth === "comprehensive" ? "Comprehensive" : "Quick Summary"
+      } with focus on ${Object.entries(options.focusAreas)
+        .filter(([, value]) => value)
+        .map(([key]) =>
+          key
+            .replace(/([A-Z])/g, " $1")
+            .replace(/^./, (str) => str.toUpperCase())
+        )
+        .join(", ")}`,
       timestamp: new Date().toLocaleTimeString(),
     };
-    
-    setMessages(prev => [...prev, optionsMessage]);
-    
+
+    setMessages((prev) => [...prev, optionsMessage]);
+
     // Start analysis
     simulateAnalysis();
   };
 
   const simulateAnalysis = () => {
     setIsAnalyzing(true);
-    
+
     // Add analyzing message
     const analyzingMessage = {
       id: Date.now() + 2,
@@ -234,8 +277,8 @@ const ChatPage = () => {
       content: "🔄 Analyzing your document... This may take a moment.",
       timestamp: new Date().toLocaleTimeString(),
     };
-    
-    setMessages(prev => [...prev, analyzingMessage]);
+
+    setMessages((prev) => [...prev, analyzingMessage]);
 
     setTimeout(() => {
       const analysisResult = {
@@ -244,8 +287,8 @@ const ChatPage = () => {
         content: `✅ Analysis Complete!\n\n**Document Summary:**\nThis employment agreement demonstrates industry-standard practices with competitive compensation structures and balanced risk allocation.\n\n**Key Findings:**\n• Compensation package is competitive with market standards\n• Non-compete clause may be restrictive (6-month duration)\n• IP assignment terms are comprehensive but standard\n• Termination provisions provide reasonable security\n\n**Risk Level:** Moderate\n**Compliance Score:** 92%\n\n**Top Recommendations:**\n1. Consider negotiating non-compete duration from 6 to 3 months\n2. Request clarification on geographic scope limitations\n3. Seek definition of "confidential information" to prevent overreach\n\nWould you like me to elaborate on any of these findings?`,
         timestamp: new Date().toLocaleTimeString(),
       };
-      
-      setMessages(prev => [...prev, analysisResult]);
+
+      setMessages((prev) => [...prev, analysisResult]);
       setIsAnalyzing(false);
     }, 3000);
   };
@@ -258,19 +301,20 @@ const ChatPage = () => {
         content: inputMessage,
         timestamp: new Date().toLocaleTimeString(),
       };
-      
-      setMessages(prev => [...prev, userMessage]);
+
+      setMessages((prev) => [...prev, userMessage]);
       setInputMessage("");
-      
+
       // Simulate AI response
       setTimeout(() => {
         const aiResponse = {
           id: Date.now() + 1,
           type: "assistant",
-          content: "I understand your question. Based on the document analysis, I can provide more specific guidance. Could you clarify which aspect you'd like me to focus on?",
+          content:
+            "I understand your question. Based on the document analysis, I can provide more specific guidance. Could you clarify which aspect you'd like me to focus on?",
           timestamp: new Date().toLocaleTimeString(),
         };
-        setMessages(prev => [...prev, aiResponse]);
+        setMessages((prev) => [...prev, aiResponse]);
       }, 1000);
     }
   };
@@ -290,7 +334,7 @@ const ChatPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <Navbar />
-      
+
       {/* Chat Header */}
       <div className="pt-20 pb-6 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -300,8 +344,12 @@ const ChatPage = () => {
                 <MessageSquare className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-slate-900">AI Assistant Chat</h1>
-                <p className="text-slate-600">Upload documents and get instant legal analysis</p>
+                <h1 className="text-2xl font-bold text-slate-900">
+                  AI Assistant Chat
+                </h1>
+                <p className="text-slate-600">
+                  Upload documents and get instant legal analysis
+                </p>
               </div>
             </div>
             <button
@@ -318,8 +366,8 @@ const ChatPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Chat History Sidebar */}
           <div className="lg:col-span-1">
-            <ChatHistory 
-              chatHistory={chatHistory} 
+            <ChatHistory
+              chatHistory={chatHistory}
               onSelectChat={handleSelectChat}
             />
           </div>
@@ -332,7 +380,9 @@ const ChatPage = () => {
                 {messages.map((message) => (
                   <div
                     key={message.id}
-                    className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
+                    className={`flex ${
+                      message.type === "user" ? "justify-end" : "justify-start"
+                    }`}
                   >
                     <div
                       className={`max-w-xs lg:max-w-md xl:max-w-lg px-4 py-2 rounded-lg ${
@@ -341,10 +391,16 @@ const ChatPage = () => {
                           : "bg-slate-100 text-slate-900"
                       }`}
                     >
-                      <div className="whitespace-pre-wrap text-sm">{message.content}</div>
-                      <div className={`text-xs mt-1 ${
-                        message.type === "user" ? "text-emerald-100" : "text-slate-500"
-                      }`}>
+                      <div className="whitespace-pre-wrap text-sm">
+                        {message.content}
+                      </div>
+                      <div
+                        className={`text-xs mt-1 ${
+                          message.type === "user"
+                            ? "text-emerald-100"
+                            : "text-slate-500"
+                        }`}
+                      >
                         {message.timestamp}
                       </div>
                     </div>

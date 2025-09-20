@@ -1,5 +1,14 @@
-import { Star, Play, ArrowRight } from "lucide-react";
+import { Star, Play, ArrowRight, MessageCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleStartAnalyzing = () => {
+    navigate("/chat"); // redirect to ChatPage route
+    console.log("Redirecting to chat page...");
+  };
+
   return (
     <div className="pt-24 pb-16 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,6 +30,18 @@ const Hero = () => {
             our advanced AI. Upload any document and get instant analysis, risk
             assessment, and plain English explanations.
           </p>
+
+          {/* Start Analyzing Button */}
+          <div className="mb-8">
+            <button
+              onClick={handleStartAnalyzing}
+              className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-10 py-4 rounded-full font-semibold text-xl hover:shadow-xl transition-all transform hover:scale-105 flex items-center justify-center mx-auto"
+            >
+              <MessageCircle className="w-6 h-6 mr-3" />
+              Start Analyzing Your Documents
+              <ArrowRight className="w-6 h-6 ml-3" />
+            </button>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <button className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all transform hover:scale-105 flex items-center">

@@ -25,8 +25,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div 
-            className="flex items-center space-x-3 cursor-pointer" 
+          <div
+            className="flex items-center space-x-3 cursor-pointer"
             onClick={() => navigate("/")}
           >
             <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-2 rounded-xl">
@@ -36,7 +36,9 @@ const Navbar = () => {
               <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent leading-tight">
                 DocuMind
               </h1>
-              <p className="text-xs text-gray-500 leading-none">AI Legal Assistant</p>
+              <p className="text-xs text-gray-500 leading-none">
+                AI Legal Assistant
+              </p>
             </div>
           </div>
 
