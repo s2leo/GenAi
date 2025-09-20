@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { FileText, Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FileText, Menu, X, MessageSquare, Home } from "lucide-react";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,26 +25,41 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div 
+            className="flex items-center space-x-3 cursor-pointer" 
+            onClick={() => navigate("/")}
+          >
             <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-2 rounded-xl">
               <FileText className="w-8 h-8 text-white" />
             </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent leading-tight">
                 DocuMind
               </h1>
-              <p className="text-xs text-gray-500">AI Legal Assistant</p>
+              <p className="text-xs text-gray-500 leading-none">AI Legal Assistant</p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#"
-              className="text-gray-600 hover:text-emerald-600 font-medium transition-colors"
+            <button
+              onClick={() => navigate("/")}
+              className={`text-gray-600 hover:text-emerald-600 font-medium transition-colors flex items-center space-x-1 ${
+                location.pathname === "/" ? "text-emerald-600" : ""
+              }`}
             >
-              Home
-            </a>
+              <Home className="w-4 h-4" />
+              <span>Home</span>
+            </button>
+            <button
+              onClick={() => navigate("/chat")}
+              className={`text-gray-600 hover:text-emerald-600 font-medium transition-colors flex items-center space-x-1 ${
+                location.pathname === "/chat" ? "text-emerald-600" : ""
+              }`}
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>AI Chat</span>
+            </button>
             <a
               href="#"
               className="text-gray-600 hover:text-emerald-600 font-medium transition-colors"
@@ -82,12 +100,30 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white border-t border-gray-200 py-4">
             <div className="flex flex-col space-y-4">
-              <a
-                href="#"
-                className="text-gray-600 hover:text-emerald-600 font-medium px-4 py-2"
+              <button
+                onClick={() => {
+                  navigate("/");
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`text-gray-600 hover:text-emerald-600 font-medium px-4 py-2 text-left flex items-center space-x-2 ${
+                  location.pathname === "/" ? "text-emerald-600" : ""
+                }`}
               >
-                Home
-              </a>
+                <Home className="w-4 h-4" />
+                <span>Home</span>
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/chat");
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`text-gray-600 hover:text-emerald-600 font-medium px-4 py-2 text-left flex items-center space-x-2 ${
+                  location.pathname === "/chat" ? "text-emerald-600" : ""
+                }`}
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>AI Chat</span>
+              </button>
               <a
                 href="#"
                 className="text-gray-600 hover:text-emerald-600 font-medium px-4 py-2"
