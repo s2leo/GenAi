@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Navbar from "./component/Navbar";
 import Hero from "./component/Hero";
-import Uploade from "./component/Upload";
+import Upload from "./component/Upload";
 import Analyze from "./component/Analyze";
 import Result from "./component/Result";
 import {
-  Upload,
   Brain,
   Eye,
   CheckCircle,
@@ -23,6 +22,7 @@ import {
   TrendingUp,
   AlertTriangle,
   ChevronRight,
+  Upload as UploadIcon,
 } from "lucide-react";
 
 const LegalSymbol = () => {
@@ -44,7 +44,7 @@ const tabConfig = [
   {
     id: "upload",
     label: "Document Upload",
-    icon: <Upload className="w-5 h-5" />,
+    icon: <UploadIcon className="w-5 h-5" />,
     description: "Secure document processing",
   },
   {
@@ -228,7 +228,7 @@ const App = () => {
           {/* Tab Content */}
           <div className="p-8">
             {activeTab === "upload" && (
-              <Uploade
+              <Upload
                 onFileUpload={handleFileUpload}
                 uploadedFile={uploadedFile}
               />

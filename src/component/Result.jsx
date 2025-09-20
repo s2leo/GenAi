@@ -1,3 +1,5 @@
+import { Eye, FileText, AlertTriangle, Clock, BookOpen, Zap, CheckCircle, Download, Users } from "lucide-react";
+
 const Result = ({ analysisResult }) => {
   if (!analysisResult) {
     return (

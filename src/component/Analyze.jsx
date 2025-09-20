@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Brain, FileText, Search, Shield } from "lucide-react";
+
 const Analyze = ({ uploadedFile, onStartAnalysis, isAnalyzing }) => {
   const [analysisOptions, setAnalysisOptions] = useState({
     type: "comprehensive",

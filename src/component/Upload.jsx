@@ -1,3 +1,6 @@
+import { useState, useRef } from "react";
+import { Users, Globe, BookOpen, CheckCircle, Upload as UploadIcon } from "lucide-react";
+
 const Upload = ({ onFileUpload, uploadedFile }) => {
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef(null);
@@ -41,7 +44,7 @@ const Upload = ({ onFileUpload, uploadedFile }) => {
         onDrop={handleDrop}
       >
         <div className="bg-gradient-to-r from-emerald-500 to-teal-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-          <Upload className="w-10 h-10 text-white" />
+          <UploadIcon className="w-10 h-10 text-white" />
         </div>
 
         <h3 className="text-2xl font-bold text-gray-900 mb-3">
@@ -131,4 +134,5 @@ const Upload = ({ onFileUpload, uploadedFile }) => {
     </div>
   );
 };
+
 export default Upload;
