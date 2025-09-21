@@ -10,7 +10,7 @@ const Navbar = () => {
   const [currentPath, setCurrentPath] = useState("/");
   const [user, setUser] = useState(() => {
     // Try to load user from localStorage
-    const stored = localStorage.getItem("documind_user");
+    const stored = localStorage.getItem("LegalAi_user");
     return stored ? JSON.parse(stored) : null;
   });
 
@@ -32,7 +32,7 @@ const Navbar = () => {
     // Simulate login success and store user info
     const userObj = { email: loginData.email };
     setUser(userObj);
-    localStorage.setItem("documind_user", JSON.stringify(userObj));
+    localStorage.setItem("LegalAi_user", JSON.stringify(userObj));
     setIsLoginModalOpen(false);
   };
 
@@ -43,7 +43,7 @@ const Navbar = () => {
   // Optional: Add logout handler
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem("documind_user");
+    localStorage.removeItem("LegalAi_user");
   };
 
   return (
@@ -67,7 +67,7 @@ const Navbar = () => {
               </div>
               <div className="flex flex-col">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent leading-tight">
-                  DocuMind
+                  LegalAi
                 </h1>
                 <p className="text-xs text-gray-500 leading-none">
                   AI Legal Assistant

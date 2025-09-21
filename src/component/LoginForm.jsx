@@ -31,7 +31,7 @@ export default function LoginForm({ onLogin, onClose }) {
               <FileText className="w-4 h-4 text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-800">DocuMind</h1>
+              <h1 className="text-lg font-bold text-gray-800">LegalAi</h1>
               <p className="text-[10px] text-green-600 font-medium -mt-1">
                 AI Legal Assistant
               </p>
