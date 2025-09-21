@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState("/");
+  const [user, setUser] = useState(null); // null means not logged in
 
   const navigate = (path) => {
     setCurrentPath(path);
@@ -22,8 +23,8 @@ const Navbar = () => {
   }, []);
 
   const handleLogin = (loginData) => {
-    console.log("Login attempt:", loginData);
-    // Add your login logic here
+    // Simulate login success and store user info
+    setUser({ email: loginData.email });
     setIsLoginModalOpen(false);
   };
 
@@ -80,12 +81,18 @@ const Navbar = () => {
                 <MessageSquare className="w-4 h-4" />
                 <span>AI Chat</span>
               </button>
-              <button
-                onClick={() => setIsLoginModalOpen(true)}
-                className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all transform hover:scale-105"
-              >
-                Login
-              </button>
+              {user ? (
+                <span className="text-gray-700 font-medium px-4">
+                  Hello{user.email ? `, ${user.email}` : "!"}
+                </span>
+              ) : (
+                <button
+                  onClick={() => setIsLoginModalOpen(true)}
+                  className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all transform hover:scale-105"
+                >
+                  Login
+                </button>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -129,15 +136,21 @@ const Navbar = () => {
                   <MessageSquare className="w-4 h-4" />
                   <span>AI Chat</span>
                 </button>
-                <button
-                  onClick={() => {
-                    setIsLoginModalOpen(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="mx-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-2 rounded-full font-medium"
-                >
-                  Login
-                </button>
+                {user ? (
+                  <span className="mx-4 text-gray-700 font-medium px-4">
+                    Hello{user.email ? `, ${user.email}` : "!"}
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setIsLoginModalOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="mx-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-2 rounded-full font-medium"
+                  >
+                    Login
+                  </button>
+                )}
               </div>
             </div>
           )}
