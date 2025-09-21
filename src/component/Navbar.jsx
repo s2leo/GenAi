@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FileText, Menu, X, MessageSquare, Home } from "lucide-react";
 import LoginForm from "./LoginForm";
 
@@ -7,11 +8,12 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState("/");
-  const [user, setUser] = useState(null); // null means not logged in
+  const [user, setUser] = useState(null);
 
-  const navigate = (path) => {
+  const navigate = useNavigate();
+  const handleNav = (path) => {
     setCurrentPath(path);
-    console.log("Navigating to:", path);
+    navigate(path);
   };
 
   useEffect(() => {
@@ -46,7 +48,7 @@ const Navbar = () => {
             {/* Logo */}
             <div
               className="flex items-center space-x-3 cursor-pointer"
-              onClick={() => navigate("/")}
+              onClick={() => handleNav("/")}
             >
               <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-2 rounded-xl">
                 <FileText className="w-8 h-8 text-white" />
@@ -64,7 +66,7 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <button
-                onClick={() => navigate("/")}
+                onClick={() => handleNav("/")}
                 className={`text-gray-600 hover:text-emerald-600 font-medium transition-colors flex items-center space-x-1 ${
                   currentPath === "/" ? "text-emerald-600" : ""
                 }`}
@@ -73,7 +75,7 @@ const Navbar = () => {
                 <span>Home</span>
               </button>
               <button
-                onClick={() => navigate("/chat")}
+                onClick={() => handleNav("/chat")}
                 className={`text-gray-600 hover:text-emerald-600 font-medium transition-colors flex items-center space-x-1 ${
                   currentPath === "/chat" ? "text-emerald-600" : ""
                 }`}
@@ -114,7 +116,7 @@ const Navbar = () => {
               <div className="flex flex-col space-y-4">
                 <button
                   onClick={() => {
-                    navigate("/");
+                    handleNav("/");
                     setIsMobileMenuOpen(false);
                   }}
                   className={`text-gray-600 hover:text-emerald-600 font-medium px-4 py-2 text-left flex items-center space-x-2 ${
@@ -126,7 +128,7 @@ const Navbar = () => {
                 </button>
                 <button
                   onClick={() => {
-                    navigate("/chat");
+                    handleNav("/chat");
                     setIsMobileMenuOpen(false);
                   }}
                   className={`text-gray-600 hover:text-emerald-600 font-medium px-4 py-2 text-left flex items-center space-x-2 ${
