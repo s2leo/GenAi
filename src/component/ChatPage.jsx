@@ -44,7 +44,7 @@ const ChatHistory = ({ chatHistory, onSelectChat }) => (
 );
 
 // API Configuration
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://learning-glzf.onrender.com";
 
 const apiCall = async (endpoint, options = {}) => {
   const url = `${API_BASE_URL}${endpoint}`;
