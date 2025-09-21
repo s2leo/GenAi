@@ -8,7 +8,11 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [currentPath, setCurrentPath] = useState("/");
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    // Try to load user from localStorage
+    const stored = localStorage.getItem("documind_user");
+    return stored ? JSON.parse(stored) : null;
+  });
 
   const navigate = useNavigate();
   const handleNav = (path) => {
@@ -26,12 +30,20 @@ const Navbar = () => {
 
   const handleLogin = (loginData) => {
     // Simulate login success and store user info
-    setUser({ email: loginData.email });
+    const userObj = { email: loginData.email };
+    setUser(userObj);
+    localStorage.setItem("documind_user", JSON.stringify(userObj));
     setIsLoginModalOpen(false);
   };
 
   const closeModal = () => {
     setIsLoginModalOpen(false);
+  };
+
+  // Optional: Add logout handler
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("documind_user");
   };
 
   return (
@@ -84,9 +96,17 @@ const Navbar = () => {
                 <span>AI Chat</span>
               </button>
               {user ? (
-                <span className="text-gray-700 font-medium px-4">
-                  Hello{user.email ? `, ${user.email}` : "!"}
-                </span>
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-700 font-medium px-4">
+                    Hello{user.email ? `, ${user.email}` : "!"}
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="text-xs text-emerald-600 hover:underline px-2 py-1 rounded"
+                  >
+                    Logout
+                  </button>
+                </div>
               ) : (
                 <button
                   onClick={() => setIsLoginModalOpen(true)}
@@ -139,9 +159,17 @@ const Navbar = () => {
                   <span>AI Chat</span>
                 </button>
                 {user ? (
-                  <span className="mx-4 text-gray-700 font-medium px-4">
-                    Hello{user.email ? `, ${user.email}` : "!"}
-                  </span>
+                  <div className="mx-4 flex items-center space-x-2">
+                    <span className="text-gray-700 font-medium px-4">
+                      Hello{user.email ? `, ${user.email}` : "!"}
+                    </span>
+                    <button
+                      onClick={handleLogout}
+                      className="text-xs text-emerald-600 hover:underline px-2 py-1 rounded"
+                    >
+                      Logout
+                    </button>
+                  </div>
                 ) : (
                   <button
                     onClick={() => {

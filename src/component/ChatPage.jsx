@@ -20,24 +20,9 @@ import {
   ChevronDown,
   Zap,
 } from "lucide-react";
+import Navbar from "./Navbar";
 
-// Mock Navbar and ChatHistory components
-const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm z-40">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between items-center h-16">
-        <div className="flex items-center space-x-3">
-          <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-2 rounded-xl">
-            <Shield className="w-6 h-6 text-white" />
-          </div>
-          <span className="text-xl font-bold bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-transparent">
-            DocuMind
-          </span>
-        </div>
-      </div>
-    </div>
-  </nav>
-);
+// ...existing code...
 
 const ChatHistory = ({ chatHistory, onSelectChat }) => (
   <div className="bg-white rounded-xl border border-slate-200 p-4">
@@ -862,42 +847,7 @@ Would you like me to elaborate on any of these findings?`,
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <Navbar />
-
-      {/* Chat Header */}
-      <div className="pt-20 pb-6 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-3 rounded-xl">
-                <MessageSquare className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-slate-900">
-                  AI Assistant Chat
-                </h1>
-                <p className="text-slate-600">
-                  Upload documents and get instant legal analysis
-                </p>
-              </div>
-            </div>
-            <button
-              onClick={() => navigate("/")}
-              className="text-slate-600 hover:text-slate-900 font-medium"
-            >
-              ← Back to Home
-            </button>
-          </div>
-
-          {apiError && (
-            <div className="flex items-center justify-center space-x-2 mt-4">
-              <AlertTriangle className="w-4 h-4 text-red-500" />
-              <p className="text-red-600 text-sm">{apiError}</p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="pt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Chat History Sidebar */}
           <div className="lg:col-span-1">
@@ -906,10 +856,38 @@ Would you like me to elaborate on any of these findings?`,
               onSelectChat={handleSelectChat}
             />
           </div>
-
           {/* Main Chat Area */}
           <div className="lg:col-span-3">
             <div className="bg-white rounded-xl border border-slate-200 h-[600px] flex flex-col">
+              {/* Chat Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-3 rounded-xl">
+                    <MessageSquare className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-bold text-slate-900">
+                      AI Assistant Chat
+                    </h1>
+                    <p className="text-slate-600">
+                      Upload documents and get instant legal analysis
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => navigate("/")}
+                  className="text-slate-600 hover:text-slate-900 font-medium"
+                >
+                  ← Back to Home
+                </button>
+              </div>
+              {/* Error Message */}
+              {apiError && (
+                <div className="flex items-center justify-center space-x-2 mt-2">
+                  <AlertTriangle className="w-4 h-4 text-red-500" />
+                  <p className="text-red-600 text-sm">{apiError}</p>
+                </div>
+              )}
               {/* Chat Messages */}
               <div className="flex-1 p-6 overflow-y-auto space-y-4">
                 {messages.map((message) => (
@@ -948,7 +926,6 @@ Would you like me to elaborate on any of these findings?`,
                     </div>
                   </div>
                 ))}
-
                 {isAnalyzing && (
                   <div className="flex justify-start">
                     <div className="bg-slate-100 text-slate-900 px-4 py-2 rounded-lg">
@@ -961,7 +938,6 @@ Would you like me to elaborate on any of these findings?`,
                 )}
                 <div ref={messagesEndRef} />
               </div>
-
               {/* File Upload and Controls Area */}
               <div className="border-t border-slate-200 p-4">
                 {/* Top row - Comparison button when files available */}
@@ -976,7 +952,6 @@ Would you like me to elaborate on any of these findings?`,
                     </button>
                   </div>
                 )}
-
                 {/* File upload and status */}
                 <div className="flex items-center space-x-3 mb-3">
                   <label className="flex items-center space-x-2 cursor-pointer bg-emerald-100 text-emerald-700 px-3 py-2 rounded-lg hover:bg-emerald-200 transition-colors">
@@ -990,14 +965,12 @@ Would you like me to elaborate on any of these findings?`,
                       className="hidden"
                     />
                   </label>
-
                   {isUploading && (
                     <div className="flex items-center space-x-2 text-sm text-slate-600">
                       <Loader2 className="w-4 h-4 animate-spin" />
                       <span>Uploading...</span>
                     </div>
                   )}
-
                   {uploadedFiles.length > 0 && (
                     <div className="flex items-center space-x-2 text-sm text-slate-600">
                       <FileText className="w-4 h-4" />
@@ -1006,7 +979,6 @@ Would you like me to elaborate on any of these findings?`,
                     </div>
                   )}
                 </div>
-
                 {/* Message Input */}
                 <div className="flex space-x-2">
                   <textarea
@@ -1038,24 +1010,22 @@ Would you like me to elaborate on any of these findings?`,
                   </button>
                 </div>
               </div>
-            </div>
-
-            {/* Document Status */}
-            {uploadedFiles.length > 0 && (
-              <div className="mt-6 text-center">
-                <div className="inline-flex items-center space-x-2 bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200">
-                  <CheckCircle className="w-4 h-4" />
-                  <span className="text-sm">
-                    {uploadedFiles.length} document(s) processed •{" "}
-                    {categories.length} categories detected
-                  </span>
+              {/* Document Status */}
+              {uploadedFiles.length > 0 && (
+                <div className="mt-6 text-center">
+                  <div className="inline-flex items-center space-x-2 bg-green-50 text-green-700 px-4 py-2 rounded-lg border border-green-200">
+                    <CheckCircle className="w-4 h-4" />
+                    <span className="text-sm">
+                      {uploadedFiles.length} document(s) processed •{" "}
+                      {categories.length} categories detected
+                    </span>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
-
       {/* Analysis Options Modal */}
       <AnalysisOptionsModal
         isOpen={showAnalysisModal}
@@ -1063,7 +1033,6 @@ Would you like me to elaborate on any of these findings?`,
         onConfirm={handleAnalysisConfirm}
         fileName={pendingFile?.name || ""}
       />
-
       {/* Document Comparison Modal */}
       <DocumentComparisonModal
         isOpen={showComparisonModal}
