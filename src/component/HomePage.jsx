@@ -271,7 +271,7 @@ const HomePage = () => {
                   <Scale className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold">LegalAi</h4>
+                  <h4 className="text-2xl font-bold">DocuMind</h4>
                   <p className="text-slate-400">Legal Intelligence Platform</p>
                 </div>
               </div>

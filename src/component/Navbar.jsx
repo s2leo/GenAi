@@ -67,7 +67,7 @@ const Navbar = () => {
               </div>
               <div className="flex flex-col">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent leading-tight">
-                  LegalAi
+                  DocuMind
                 </h1>
                 <p className="text-xs text-gray-500 leading-none">
                   AI Legal Assistant
