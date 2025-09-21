@@ -84,15 +84,17 @@ const HomePage = () => {
             Advanced Legal Intelligence Platform
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                  "LegalAi has transformed our contract review process. The AI insights have helped us identify critical risks that our junior associates consistently missed, improving our overall service quality.",
-            analysis, risk assessment, and contract optimization with
+            "LegalAi has transformed our contract review process. The AI
+            insights have helped us identify critical risks that our junior
+            associates consistently missed, improving our overall service
+            quality.", analysis, risk assessment, and contract optimization with
             institutional-grade security.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {[
-                  "Security and accuracy were our primary concerns. LegalAi exceeded expectations on both fronts, and the detailed audit trails satisfy our compliance requirements perfectly.",
+            {
               icon: <Brain className="w-8 h-8" />,
               title: "Advanced Natural Language Processing",
               description:
@@ -207,7 +209,7 @@ const HomePage = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  © 2025 LegalAi Technologies, Inc. All rights reserved.
+          {[
             {
               quote:
                 "LegalAi has transformed our contract review process. The AI insights have helped us identify critical risks that our junior associates consistently missed, improving our overall service quality.",
