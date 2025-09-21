@@ -15,7 +15,7 @@ export default function LoginForm({ onLogin, onClose }) {
 
   return (
     // Remove the full-screen container since it's now inside a modal
-    <div className="relative z-10 w-full max-w-md">
+    <div className="relative z-10 w-full max-w-sm">
       {/* Animated background elements - positioned relative to modal */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-32 h-32 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
@@ -23,31 +23,29 @@ export default function LoginForm({ onLogin, onClose }) {
       </div>
 
       {/* Main Login Card */}
-      <div className="relative backdrop-blur-xl bg-white/20 border border-white/30 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:bg-white/25">
+      <div className="relative backdrop-blur-xl bg-white/20 border border-white/30 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:bg-white/25">
         {/* Logo Section */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
-              <FileText className="w-6 h-6 text-white" />
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+              <FileText className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">DocuMind</h1>
-              <p className="text-sm text-green-600 font-medium -mt-1">
+              <h1 className="text-2xl font-bold text-gray-800">DocuMind</h1>
+              <p className="text-xs text-green-600 font-medium -mt-1">
                 AI Legal Assistant
               </p>
             </div>
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Welcome Back
-          </h2>
+          <h2 className="text-xl font-bold text-gray-800 mb-1">Welcome Back</h2>
           <p className="text-gray-600">Sign in to decode legal documents</p>
         </div>
 
         {/* Login Form */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Email Field */}
-          <div className="space-y-2">
+          <div className="space-y-1">
             <label className="block text-sm font-semibold text-gray-700">
               Email Address
             </label>
@@ -57,7 +55,7 @@ export default function LoginForm({ onLogin, onClose }) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 placeholder-gray-500 text-gray-800 hover:bg-white/50"
+                className="w-full pl-12 pr-4 py-3 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 placeholder-gray-500 text-gray-800 hover:bg-white/50"
                 placeholder="Enter your email"
                 required
               />
@@ -65,7 +63,7 @@ export default function LoginForm({ onLogin, onClose }) {
           </div>
 
           {/* Password Field */}
-          <div className="space-y-2">
+          <div className="space-y-1">
             <label className="block text-sm font-semibold text-gray-700">
               Password
             </label>
@@ -75,7 +73,7 @@ export default function LoginForm({ onLogin, onClose }) {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-12 pr-12 py-4 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 placeholder-gray-500 text-gray-800 hover:bg-white/50"
+                className="w-full pl-12 pr-12 py-3 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 placeholder-gray-500 text-gray-800 hover:bg-white/50"
                 placeholder="Enter your password"
                 required
               />
@@ -113,14 +111,14 @@ export default function LoginForm({ onLogin, onClose }) {
           {/* Login Button */}
           <button
             onClick={handleSubmit}
-            className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent"
+            className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent"
           >
             Sign In
           </button>
         </div>
 
         {/* Divider */}
-        <div className="relative my-8">
+        <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-white/30"></div>
           </div>
@@ -132,10 +130,10 @@ export default function LoginForm({ onLogin, onClose }) {
         </div>
 
         {/* Social Login */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 gap-3 mb-6">
           <button
             type="button"
-            className="flex items-center justify-center py-3 px-4 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl hover:bg-white/50 transition-all duration-300 hover:scale-[1.02]"
+            className="flex items-center justify-center py-2.5 px-4 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl hover:bg-white/50 transition-all duration-300 hover:scale-[1.02]"
           >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
               <path
@@ -155,17 +153,17 @@ export default function LoginForm({ onLogin, onClose }) {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               />
             </svg>
-            <span className="text-gray-700 font-medium">Google</span>
+            <span className="text-gray-700 font-medium text-sm">Google</span>
           </button>
 
           <button
             type="button"
-            className="flex items-center justify-center py-3 px-4 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl hover:bg-white/50 transition-all duration-300 hover:scale-[1.02]"
+            className="flex items-center justify-center py-2.5 px-4 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl hover:bg-white/50 transition-all duration-300 hover:scale-[1.02]"
           >
             <svg className="w-5 h-5 mr-2" fill="#1877f2" viewBox="0 0 24 24">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
-            <span className="text-gray-700 font-medium">Facebook</span>
+            <span className="text-gray-700 font-medium text-sm">Facebook</span>
           </button>
         </div>
 
